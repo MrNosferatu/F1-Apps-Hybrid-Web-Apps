@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { F1Service } from '../services/f1-service.service';
 
 @Component({
   selector: 'app-tab1',
@@ -6,7 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  f1Teams: any[];
 
-  constructor() {}
+  constructor(private f1Service: F1Service) {
+    this.f1Teams = [];
+  }
 
+  ngOnInit() {
+    this.f1Service.getF1Teams().subscribe((data: any) => {
+      this.f1Teams = data.teams;
+    });
+  }
 }
