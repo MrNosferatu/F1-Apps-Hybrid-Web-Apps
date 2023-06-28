@@ -8,7 +8,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let driver of F1Driver">
+    <ion-item *ngFor="let driver of F1Driver" [routerLink]="['/drivers', driver.strPlayer]">
       <ion-avatar slot="start">
         <img [src]="driver.strThumb" alt="Driver Avatar">
       </ion-avatar>

@@ -1,0 +1,70 @@
+<div *ngFor="let driver of driverDetails" style="display: contents">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="goBack()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title class="text-center">{{ driver.strPlayer }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="6" size-lg="4">
+            <ion-img [src]="driver.strCutout" alt="{{ driver.strPlayer }}"></ion-img>
+          </ion-col>
+          <ion-col>
+            <ion-card-header>
+              <ion-row>
+                <ion-col size="12" size-md="6" size-lg="12">
+                  <ion-row>
+                    <h5>Team :</h5>
+                  </ion-row>
+                  <ion-row>
+                    <ion-card-subtitle>{{ driver.strTeam }}</ion-card-subtitle>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-md="6" size-lg="12">
+                  <ion-row>
+                    <h5>Racing Number :</h5>
+                  </ion-row>
+                  <ion-row>
+                    <ion-card-subtitle>{{ driver.strNumber }}</ion-card-subtitle>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-md="6" size-lg="12">
+                  <ion-row>
+                    <h5>Nationality :</h5>
+                  </ion-row>
+                  <ion-row>
+                    <ion-card-subtitle>{{ driver.strNationality }}</ion-card-subtitle>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <h5>Description :</h5>
+              </ion-row>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-row>
+                <ion-col size="12" size-md="6" size-lg="12">
+                  <ion-row>
+                    <ion-card-subtitle>{{ driver.strDescriptionEN }}</ion-card-subtitle>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-content>
+</div>

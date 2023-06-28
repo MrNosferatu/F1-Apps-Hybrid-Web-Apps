@@ -63,4 +63,8 @@ export class F1Service {
     });
     return forkJoin(requests);
   }
+  getF1DriverDetails(name: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/searchplayers.php?p=${name}`);
+
+  }
 }
