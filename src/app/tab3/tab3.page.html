@@ -1,14 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      F1 Drivers
-    </ion-title>
+  <ion-toolbar color="primary">
+    <ion-row class="ion-align-items-center">
+      <ion-col class="ion-text-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/F1_%28white%29.svg/2560px-F1_%28white%29.svg.png" alt="F1 Logo" style="width: 80px;">
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="light">
   <ion-list>
-    <ion-item *ngFor="let driver of F1Driver" [routerLink]="['/drivers', driver.strPlayer]">
+    <ion-item *ngFor="let driver of F1Driver" [routerLink]="['/drivers', driver.strPlayer]" >
       <ion-avatar slot="start">
         <img [src]="driver.strThumb" alt="Driver Avatar">
       </ion-avatar>

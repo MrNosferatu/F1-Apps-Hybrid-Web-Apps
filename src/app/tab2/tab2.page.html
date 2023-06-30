@@ -1,20 +1,27 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Events
-    </ion-title>
+  <ion-toolbar color="primary">
+    <ion-row class="ion-align-items-center">
+      <ion-col class="ion-text-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/F1_%28white%29.svg/2560px-F1_%28white%29.svg.png" alt="F1 Logo" style="width: 80px;">
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card *ngFor="let event of events">
-    <ion-img [src]="event.strThumb" slot="start"></ion-img>
-    <ion-card-header *ngFor="let session of event.events">
-      <ion-card-title>{{ session.strEvent }}</ion-card-title>
-      <ion-card-subtitle>{{ session.dateEventLocal}} - {{ session.strTimeLocal}} (Local Date and Time)</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <p>{{ event.strTime }}</p>
-    </ion-card-content>
-  </ion-card>
+<ion-content color="light">
+  <ion-row>
+    <ion-col  size="12" size-md="6" size-lg="3" *ngFor="let event of events">
+      <ion-card>
+        <!-- <ion-img [src]="event.strThumb" slot="start"></ion-img> -->
+        <ion-img [src]="event.events[1].strBanner"></ion-img>
+        <ion-card-header *ngFor="let session of event.events">
+          <ion-card-title>{{ session.strEvent }}</ion-card-title>
+          <ion-card-subtitle>{{ session.dateEventLocal}} - {{ session.strTimeLocal}} (Local Date and Time)</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{ event.strTime }}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>

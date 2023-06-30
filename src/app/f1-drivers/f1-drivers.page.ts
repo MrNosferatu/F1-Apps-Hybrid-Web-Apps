@@ -12,7 +12,7 @@ export class F1DriversPage implements OnInit {
   name = '';
   driverDetails: any;
 
-  constructor(private route: ActivatedRoute, private f1Service: F1Service,     private location: Location) { }
+  constructor(private route: ActivatedRoute, private f1Service: F1Service, private location: Location) { }
 
   // ngOnInit(): void {
   //   this.route.params.subscribe(params => {
@@ -28,10 +28,11 @@ export class F1DriversPage implements OnInit {
       this.name = params['name'];
       this.f1Service.getF1DriverDetails(this.name).subscribe((data: any) => {
         console.log(data);
-        this.driverDetails = data.player;
+        this.driverDetails = data.player.filter((item: any) => item.strSport === "Motorsport");
         console.log(this.driverDetails);
       });
     });
+
   }
   goBack() {
     this.location.back();
