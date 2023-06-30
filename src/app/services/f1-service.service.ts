@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { map, mergeMap, switchMap } from 'rxjs/operators';
 
 interface EventsByRound {
   [key: string]: any[];
@@ -38,11 +38,36 @@ export class F1Service {
 
   constructor(private http: HttpClient) { }
 
+  // getF1Teams(): Observable<any> {
+  //   return this.http.get(`${this.apiUrl}/search_all_teams.php?l=Formula%201`);
+  // }
   getF1Teams(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/search_all_teams.php?l=Formula%201`)
+      .pipe(
+        switchMap((response: any) => {
+          const teams = response.teams;
+          const teamIds = teams.map((team: any) => team.idTeam);
+          const requests = teamIds.map((id: string) => this.http.get(`${this.apiUrl}/lookupequipment.php?id=${id}`));
+          return forkJoin(requests).pipe(
+            map<any, any>((equipment: any[]) => {
+              const teamsWithEquipment = teams.map((team: any, index: number) => {
+                return {
+                  ...team,
+                  equipment: equipment[index].equipment
+                };
+              });
+              return { teams: teamsWithEquipment };
+            })
+          );
+        })
+      );
+  }
+
+  getF1TeamsCars(): Observable<any> {
     return this.http.get(`${this.apiUrl}/search_all_teams.php?l=Formula%201`);
   }
   getF1Events(): Observable<any> {
-    const requests = Array.from({ length: 10 }, (_, i) => i + 1).map(round => {
+    const requests = Array.from({ length: 3 }, (_, i) => i + 1).map(round => {
       return this.http.get(`${this.apiUrl}/eventsround.php?id=4370&r=${round}&s=2023`).pipe(
         map((response: any) => response)
       );

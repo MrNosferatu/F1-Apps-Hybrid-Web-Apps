@@ -1,24 +1,32 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-row class="ion-align-items-center">
-      <ion-col class="ion-text-center">
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/F1_%28white%29.svg/2560px-F1_%28white%29.svg.png" alt="F1 Logo" style="width: 80px;">
       </ion-col>
     </ion-row>
   </ion-toolbar>
 </ion-header>
-
+<ion-item>
+  <ion-label>
+    <h2 class="ion-text-center" style="font-weight: bold">F1 2023 Driver</h2>
+  </ion-label>
+</ion-item>
 <ion-content color="light">
-  <ion-list>
-    <ion-item *ngFor="let driver of F1Driver" [routerLink]="['/drivers', driver.strPlayer]" >
-      <ion-avatar slot="start">
-        <img [src]="driver.strThumb" alt="Driver Avatar">
-      </ion-avatar>
-      <ion-label>
-        <h2>{{ driver.strPlayer }}</h2>
-        <p>{{ driver.strNationality }}</p>
-        <p>{{ driver.strTeam }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="3" size-md="4" size-sm="6" *ngFor="let driver of F1Driver">
+        <ion-item [routerLink]="['/drivers', driver.strPlayer]">
+          <ion-avatar slot="start">
+            <img [src]="driver.strThumb" alt="Driver Avatar">
+          </ion-avatar>
+          <ion-label>
+            <h1>{{ driver.strPlayer }}</h1>
+            <p>{{ driver.strNationality }}</p>
+            <p>{{ driver.strTeam }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
