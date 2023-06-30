@@ -42,7 +42,7 @@ export class F1Service {
     return this.http.get(`${this.apiUrl}/search_all_teams.php?l=Formula%201`);
   }
   getF1Events(): Observable<any> {
-    const requests = Array.from({ length: 25 }, (_, i) => i + 1).map(round => {
+    const requests = Array.from({ length: 10 }, (_, i) => i + 1).map(round => {
       return this.http.get(`${this.apiUrl}/eventsround.php?id=4370&r=${round}&s=2023`).pipe(
         map((response: any) => response)
       );
@@ -65,6 +65,9 @@ export class F1Service {
   }
   getF1DriverDetails(name: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/searchplayers.php?p=${name}`);
-
   }
+  getF1EventDetails(event: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/eventresults.php?id=${event}`);
+  }
+  
 }

@@ -14,7 +14,12 @@ const routes: Routes = [
   {
     path: 'drivers/:name',
     loadChildren: () => import('./f1-drivers/f1-drivers.module').then(m => m.F1DriversPageModule)
+  },
+  {
+    path: 'events/:event',
+    loadChildren: () => import('./events/events.module').then( m => m.EventsPageModule)
   }
+
 
 ];
 @NgModule({
