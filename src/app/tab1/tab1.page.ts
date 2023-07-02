@@ -15,7 +15,6 @@ export class Tab1Page {
 
   ngOnInit() {
     this.f1Service.getF1Teams().subscribe((data: any) => {
-      console.log(data);
       this.f1Teams = data.teams;
     });
   }

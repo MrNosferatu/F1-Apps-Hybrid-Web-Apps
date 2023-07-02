@@ -15,9 +15,7 @@ export class Tab3Page {
 
   ngOnInit() {
     this.f1Service.getF1Driver().subscribe((data: any) => {
-      console.log(data);
       this.F1Driver = data.flatMap((item: any) => item.player).filter((player: any) => player !== null && player.strSport === 'Motorsport');
-      console.log(this.F1Driver);
     });
   }
   
