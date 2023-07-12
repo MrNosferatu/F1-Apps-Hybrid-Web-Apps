@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-row class="ion-align-items-center">
+    <ion-title class="ion-align-items-center">
       <ion-col class="ion-text-center">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/F1_%28white%29.svg/2560px-F1_%28white%29.svg.png" alt="F1 Logo" style="width: 80px;">
       </ion-col>
-    </ion-row>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-item>
@@ -32,7 +32,7 @@
             <ion-item>
               <ion-row>
                 <div style="height: 150px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                  <ion-img [src]="team.equipment[team.equipment.length - 1].strEquipment" style="object-fit: fill;"></ion-img>
+                  <ion-img [src]="team.strTeamJersey" style="object-fit: fill;"></ion-img>
                 </div>
               </ion-row>
             </ion-item>

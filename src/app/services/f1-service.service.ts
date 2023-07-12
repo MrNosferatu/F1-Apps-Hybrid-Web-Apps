@@ -38,27 +38,9 @@ export class F1Service {
 
   getF1Teams(): Observable<any> {
     return this.http.get(`${this.apiUrl}/search_all_teams.php?l=Formula%201`)
-      .pipe(
-        switchMap((response: any) => {
-          const teams = response.teams;
-          const teamIds = teams.map((team: any) => team.idTeam);
-          const requests = teamIds.map((id: string) => this.http.get(`${this.apiUrl}/lookupequipment.php?id=${id}`));
-          return forkJoin(requests).pipe(
-            map<any, any>((equipment: any[]) => {
-              const teamsWithEquipment = teams.map((team: any, index: number) => {
-                return {
-                  ...team,
-                  equipment: equipment[index].equipment
-                };
-              });
-              return { teams: teamsWithEquipment };
-            })
-          );
-        })
-      );
   }
   getF1Events(): Observable<any> {
-    const requests = Array.from({ length: 25 }, (_, i) => i + 1).map(round => {
+    const requests = Array.from({ length: 3 }, (_, i) => i + 1).map(round => {
       return this.http.get(`${this.apiUrl}/eventsround.php?id=4370&r=${round}&s=2023`).pipe(
         map((response: any) => response)
       );
@@ -83,7 +65,6 @@ export class F1Service {
     return this.http.get(`${this.apiUrl}/searchplayers.php?p=${name}`);
   }
   getF1EventDetails(event: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/eventresults.php?id=${event}`);
+    return this.http.get(`${this.apiUrl}/eventresults.php?id=${event}`)
   }
-
 }

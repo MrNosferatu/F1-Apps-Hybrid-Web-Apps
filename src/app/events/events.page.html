@@ -5,11 +5,11 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-row class="ion-align-items-center" style="margin-left: -45px;">
+    <ion-title class="ion-align-items-center">
       <ion-col class="ion-text-center">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/F1_%28white%29.svg/2560px-F1_%28white%29.svg.png" alt="F1 Logo" style="width: 80px;">
       </ion-col>
-    </ion-row>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,18 +18,41 @@
     <h4 class="ion-text-center" style="font-weight: bold">{{Title}}</h4>
   </ion-label>
 </ion-item>
+
+
 <ion-content color="light">
+  
+  <!-- <ion-segment value="Events_Details">
+    <ion-segment-button value="Events_Details">
+      <ion-label>Events Details</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="segment">
+      <ion-label>Results</ion-label>
+    </ion-segment-button>
+  </ion-segment> -->
+
   <ion-card>
-    <ion-item *ngFor="let event of EventDetails; let i = index">
+    <ion-item>
       <ion-label>
-        <ion-row>
+        <ion-row style="font-weight: bold">
           <ion-col size="1">
-            <h2>{{ i + 1 }}</h2>
+            <p class="ion-text-center">Pos</p>
+          </ion-col>
+          <ion-col>
+            <p>Driver</p>
+          </ion-col>
+          <ion-col size="3">
+            <p class="ion-text-center">Time</p>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let event of EventDetails; let i = index">
+          <ion-col size="1">
+            <p class="ion-text-center">{{ i + 1 }}</p>
           </ion-col>
           <ion-col>
             <p>{{ event.strPlayer }}</p>
           </ion-col>
-          <ion-col>
+          <ion-col size="3">
             <p class="ion-text-end">{{ event.strDetail }}</p>
           </ion-col>
         </ion-row>

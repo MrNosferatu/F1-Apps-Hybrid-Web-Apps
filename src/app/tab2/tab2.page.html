@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-row class="ion-align-items-center">
+    <ion-title class="ion-align-items-center">
       <ion-col class="ion-text-center">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/F1_%28white%29.svg/2560px-F1_%28white%29.svg.png" alt="F1 Logo" style="width: 80px;">
       </ion-col>
-    </ion-row>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-item>
@@ -12,21 +12,22 @@
     <h2 class="ion-text-center" style="font-weight: bold">F1 2023 Grand Prix</h2>
   </ion-label>
 </ion-item>
+
 <ion-content color="light">
   <ion-row>
     <ion-col size="12" size-md="6" size-lg="3" *ngFor="let event of events">
-      <ion-card>
-        <!-- <ion-card-header style="margin: 0px; padding: 0;" color="primary">
-          <h3 class="ion-text-center">Round {{event.events[1].intRound}}</h3>
-        </ion-card-header> -->
+      <ion-card style="padding-bottom: 20px;">
         <ion-img [src]="event.events[1].strBanner"></ion-img>
-        <ion-card-header *ngFor="let session of event.events" [routerLink]="['/events', session.idEvent]">
-          <ion-card-title>{{ session.strEvent }}</ion-card-title>
-          <ion-card-subtitle>{{ session.dateEventLocal}} - {{ session.strTimeLocal}} (Local Date and Time)</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          <p>{{ event.strTime }}</p>
-        </ion-card-content>
+        <div *ngFor="let session of event.events" [routerLink]="['/events', session.idEvent]">
+          <ion-card-header style="margin-top: 0%; margin-bottom: 0%; padding-top: 0%; padding-bottom: 0%;">
+            <ion-text color="dark">
+              <h5 style="font-weight: bold;">{{ session.strEvent }}</h5>
+            </ion-text>
+          </ion-card-header>
+          <ion-card-content style="margin-top: 0%; margin-bottom: 0%; padding-top: 0%; padding-bottom: 0%;">
+            <ion-text>{{ session.dateEventLocal}} - {{ session.strTimeLocal}} (Local Time)</ion-text>
+          </ion-card-content>
+        </div>
       </ion-card>
     </ion-col>
   </ion-row>
