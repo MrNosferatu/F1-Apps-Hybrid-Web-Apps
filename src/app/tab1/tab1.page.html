@@ -9,36 +9,34 @@
 </ion-header>
 <ion-item>
   <ion-label>
-    <h2 class="ion-text-center" style="font-weight: bold">F1 Teams</h2>
+    <h2 class="ion-text-center" style="font-weight: bold">F1 2023 Teams</h2>
   </ion-label>
 </ion-item>
-<ion-content color="light" class="md">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12" size-md="6" size-lg="3" *ngFor="let team of f1Teams">
-        <ion-card>
-          <ion-card-header class="text-left">
-            <ion-item>
-              <ion-avatar style="background-color: black;width:48px; height:48px;" slot="start">
-                <ion-img [src]="team.strTeamBadge" style="object-fit: fill;padding: 5px;"></ion-img>
-              </ion-avatar>
-              <ion-label>
-                <h3 style="font-weight: bold;">{{ team.strTeam }}</h3>
-                <p>{{ team.strCountry }}</p>
-              </ion-label>
-            </ion-item>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-item>
-              <ion-row>
-                <div style="height: 150px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                  <ion-img [src]="team.strTeamJersey" style="object-fit: fill;"></ion-img>
-                </div>
-              </ion-row>
-            </ion-item>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-content color="light">
+  <ion-row>
+    <ion-col size="12" size-md="6" size-lg="3" *ngFor="let team of f1Teams">
+      <ion-card style="margin:10px">
+        <ion-card-header class="text-left">
+          <ion-item>
+            <ion-avatar style="background-color: black;width:48px; height:48px;" slot="start">
+              <ion-img [src]="team.strTeamBadge" style="object-fit: fill;padding: 5px;"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h3 style="font-weight: bold;">{{ team.strTeam }}</h3>
+              <p>{{ team.strCountry }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-row>
+              <div style="height: 150px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                <ion-img [src]="team.strTeamJersey" style="object-fit: fill;"></ion-img>
+              </div>
+            </ion-row>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>

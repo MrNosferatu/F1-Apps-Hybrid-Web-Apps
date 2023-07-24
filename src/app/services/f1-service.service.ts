@@ -39,20 +39,29 @@ export class F1Service {
   getF1Teams(): Observable<any> {
     return this.http.get(`${this.apiUrl}/search_all_teams.php?l=Formula%201`)
   }
-  getF1Events(): Observable<any> {
-    const requests = Array.from({ length: 3 }, (_, i) => i + 1).map(round => {
+  getF1Events() {
+    const requests = Array.from({ length: 25 }, (_, i) => i + 1).map(round => {
       return this.http.get(`${this.apiUrl}/eventsround.php?id=4370&r=${round}&s=2023`).pipe(
-        map((response: any) => response)
+        map((response: any) => response.events)
       );
     });
     return forkJoin(requests).pipe(
-      map((events: any[]) => events.reduce((acc, val) => {
-        if (val && val.events) {
-          return acc.concat(val);
-        } else {
-          return acc;
+      map((events: any[]) => events.reduce((acc, val, index) => {
+        if (val) {
+          acc.push({ round: index + 1, events: val });
         }
-      }, []))
+        return acc;
+      }, [])),
+      map((rounds: any[]) => {
+        rounds.forEach(round => {
+          round.events.sort((a:any, b:any) => {
+            const dateA = new Date(a.strTimestamp);
+            const dateB = new Date(b.strTimestamp);
+            return dateA.getTime() - dateB.getTime();
+          });
+        });
+        return rounds;
+      })
     );
   }
   getF1Driver(): Observable<any> {
